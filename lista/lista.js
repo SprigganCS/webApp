@@ -5,6 +5,32 @@ document.addEventListener('DOMContentLoaded', function (){
 })
 
 
+function insertRowIntoTable(data){
+    const table = document.querySelector('table tbody');
+    const isTableData= table.querySelector('.no-data');
+
+    let tableHtml = "<tr>";
+    data.forEach(function ({nome_paciente, cpf_paciente, rg_paciente, nasc_paciente, sexo_paciente, id_convenio, telefone_paciente}){
+        tableHtml += `<td>${cpf_paciente}</td>`;
+        tableHtml += `<td>${nome_paciente}</td>`;
+        tableHtml += `<td>${rg_paciente}</td>`;
+        tableHtml += `<td>${new Date(nasc_paciente).toLocaleDateString()}</td>`;
+        tableHtml += `<td>${sexo_paciente}</td>`;
+        tableHtml += `<td>${telefone_paciente}</td>`;
+        tableHtml += `<td>${id_convenio}</td>`;
+        tableHtml += `<td><button class="deleta-linha-btn" data-id=${cpf_paciente}>Editar</td>`;
+        tableHtml += `<td><button class="edita-linha-btn" data-id=${cpf_paciente}>Deletar</td>`;
+    });
+    tableHtml += "</tr>";
+    if (isTableData){
+        table.innerHTML = tableHtml;
+    }else {
+        const newRow = table.insertRow();
+        newRow.innerHTML=tableHtml;
+    }
+}
+
+
 function loadHTMLTable(data){
     const table = document.querySelector('table tbody');
     
@@ -25,9 +51,10 @@ function loadHTMLTable(data){
         tableHtml += `<td>${sexo_paciente}</td>`;
         tableHtml += `<td>${telefone_paciente}</td>`;
         tableHtml += `<td>${id_convenio}</td>`;
-        tableHtml += `<td><button class="deleta-linha-btn">Editar</td>`;
-        tableHtml += `<td><button class="edita-linha-btn">Deletar</td>`
+        tableHtml += `<td><button class="deleta-linha-btn" data-id=${cpf_paciente}>Editar</td>`;
+        tableHtml += `<td><button class="edita-linha-btn" data-id=${cpf_paciente}>Deletar</td>`;
         tableHtml += "</tr>";
     });
     table.innerHTML = tableHtml;
 }
+

@@ -21,7 +21,7 @@ app.post('/insert', (request, response) =>{
 	const result= db.insertNewName(dados);
 
 	result
-	.then(data => response.json({ success : true }))
+	.then(data => response.json({ data : data }))
 	.catch(err => console.log(err));
 });
 

@@ -65,8 +65,9 @@ class DbService {
                         resolve(result.insertId);
                 })
             });
-            console.log(insertId);
-            //return response;
+            //console.log(JSON.parse(JSON.stringify(dados)).cpf);
+            return dados;
+            
 
         } catch (error){
             console.log(error);
