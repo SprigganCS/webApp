@@ -25,6 +25,16 @@ app.post('/insert', (request, response) =>{
 	.catch(err => console.log(err));
 });
 
+app.post('/agendar', (request, response) =>{ //aparentemente post é um método padrão
+	const dados = request.body;
+	const db = dbService.getDbServiceInstance();
+	const result= db.agendaConsulta(dados);
+
+	result
+	.then(data => response.json({ data : data }))
+	.catch(err => console.log(err));
+});
+
 
 
 //read
@@ -36,6 +46,8 @@ app.get('/getAll', (request, response) => {
 	.then(data => response.json({data : data}))
 	.catch(err => console.log(err));
 })
+
+
 
 
 

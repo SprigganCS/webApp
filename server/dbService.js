@@ -74,6 +74,49 @@ class DbService {
         }
 
     } 
+
+
+    async agendaConsulta(dados){
+        try{
+            const insertId = await new Promise((resolve, reject) => {
+                var auxiliar = dados;
+                var aux = JSON.parse(JSON.stringify(auxiliar));
+                var achaid = "SELECT id_medico FROM tbl_medico WHERE nome_medico=";
+                var nome_query = "'"+aux.medico+"';";
+                achaid = achaid+nome_query;
+                var id;
+                connection.query(achaid, (err, result) =>{
+                    if(err) reject(new Error(err.message));
+                    id=result;
+                    id=JSON.stringify(id).replace(/\D/g, ''); //o retorno padrão da consulta é [ RowDataPacket { id_medico: 1 } ], o método replace limpa tudo deixando apenas o valor numerico do id
+                    
+                    var achaCpf="SELECT cpf_paciente FROM tbl_paciente WHERE nome_paciente=";
+                    var nome_achaCpf="'"+aux.paciente+"';";
+                    achaCpf= achaCpf+nome_achaCpf;
+                    var cpf_achado;
+                    connection.query(achaCpf, (err, result)=>{
+                        if(err) reject(new Error(err.message));
+                        cpf_achado=JSON.stringify(result).replace(/\D/g, '');
+                        
+                        var insercao = "INSERT INTO tbl_consulta (id_medico, cpf_paciente, data_consulta) VALUES (?, ?, ?)"
+                        var dados_insercao=[ [id], [cpf_achado], [aux.data] ];
+                        // console.log(dados_insercao); // ULTIMA VERIFICAÇÃO ANTES DE INSERIR
+                        connection.query(insercao, dados_insercao, (err, result) =>{
+                            if(err) reject (new Error(err.message));
+                            console.log("Consulta agendada");
+                            resolve(result.insertId);
+                        })
+                    })
+                })
+            });
+            return dados;
+        }catch(error){
+            console.log(error);
+        }
+
+
+    }
+    
 }
 
 module.exports = DbService;

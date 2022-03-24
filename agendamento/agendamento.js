@@ -1,15 +1,7 @@
-/*document.addEventListener('DOMContentLoaded', function (){
-	fetch('http://localhost:5000/getAll')
-	.then(response => response.json())
-	.then(data => console.log(data));
-}) */
-
-
 document.getElementById('agendar').onclick = function() {
-	console.log("entrou")
 	const medico = document.getElementById("medico_agendamento").value;
 	const paciente = document.getElementById("paciente_agendamento").value;
-	const temp = document.getElementById("data_agendamento").value +":00";
+	const temp = document.getElementById("data_agendamento").value;
   
   
 	//tratamento de data: formato original "2022-03-24T02:06" -> "2022-03-24 02:06:00"
@@ -21,6 +13,19 @@ document.getElementById('agendar').onclick = function() {
 	console.log(medico);
 	console.log(paciente);
 	console.log(data);
+
+
+	//ENVIAR DADOS DO CADASTRO PARA O BANCO DE DADOS
+	var dados;
+	fetch('http://localhost:5000/agendar', {
+		headers: {
+			'Content-type': 'application/json'
+		},
+		method: 'POST',
+		body: JSON.stringify({medico, paciente, data, null : dados})
+	})
+	.then(response => response.json())
+	.then(data => insertRowIntoTable(data['data'])); 
 
 	//acharid(medico);
 
@@ -55,6 +60,6 @@ document.getElementById('agendar').onclick = function() {
 	//REJEITAR AGENDAMENTO SE NÃO TIVER NOME DO PACIENTE CADASTRADO
 	//rejeitar horarios conflitantes? isso vai ser difícil
 	
-	window.close(); //adicionar mensagem para feedback pro usuario (sucesso ou falha)
+	//window.close(); //adicionar mensagem para feedback pro usuario (sucesso ou falha)
 }
 

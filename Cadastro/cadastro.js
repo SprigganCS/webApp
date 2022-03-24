@@ -37,7 +37,5 @@ document.getElementById('cadastrar').onclick = function() {
 	
 }
 
-function insertRowIntoTable(data){
-	
-}
+
 
