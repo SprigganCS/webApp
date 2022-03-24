@@ -4,6 +4,25 @@ document.addEventListener('DOMContentLoaded', function (){
 	.then(data => loadHTMLTable(data['data']));
 })
 
+document.querySelector('table tbody').addEventListener('click', function(event){ //deleta linhas direto no banco de dados
+    if(event.target.className === "deleta-linha-btn"){
+        deletaPacientePorCPF(event.target.dataset.id) //manda o id dos botões (que no caso é o identificador CPF)
+    }
+});
+
+function deletaPacientePorCPF(id)  {
+    fetch('http://localhost:5000/delete/' + id, {
+        method: 'DELETE'
+    })
+    .then(response => response.json())
+	.then(data => {
+        if(data.success){
+            location.reload();
+        }
+    });
+}
+
+
 
 function insertRowIntoTable(data){
     const table = document.querySelector('table tbody');
@@ -51,8 +70,8 @@ function loadHTMLTable(data){
         tableHtml += `<td>${sexo_paciente}</td>`;
         tableHtml += `<td>${telefone_paciente}</td>`;
         tableHtml += `<td>${id_convenio}</td>`;
-        tableHtml += `<td><button class="deleta-linha-btn" data-id=${cpf_paciente}>Editar</td>`;
-        tableHtml += `<td><button class="edita-linha-btn" data-id=${cpf_paciente}>Deletar</td>`;
+        tableHtml += `<td><button class="edita-linha-btn" data-id=${cpf_paciente}>Editar</td>`;
+        tableHtml += `<td><button class="deleta-linha-btn" data-id=${cpf_paciente}>Deletar</td>`;
         tableHtml += "</tr>";
     });
     table.innerHTML = tableHtml;

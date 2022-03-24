@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: false }))
 
 
 
-//create
+//CRIAÇÃO
 app.post('/insert', (request, response) =>{
 	const dados = request.body;
 	const db = dbService.getDbServiceInstance();
@@ -47,7 +47,7 @@ app.post('/novoMedico', (request, response) =>{
 
 
 
-//read
+//LEITURA
 app.get('/getAll', (request, response) => {
 	const db = dbService.getDbServiceInstance();
 
@@ -67,7 +67,21 @@ app.get('/getAll', (request, response) => {
 
 
 
-//delete
+//REMOÇÃO/DELETAR
+app.delete('/delete/:id', (request, response) => {
+	const { id } = request.params;
+	const db = dbService.getDbServiceInstance();
+
+	const result = db.deletaPacientePorCPF(id);
+
+	result
+	.then(data => response.json({success : data}))
+	.catch(err => console.log(err));
+
+});
+
+
+
 
 
 
