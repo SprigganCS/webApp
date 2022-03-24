@@ -1,0 +1,29 @@
+body{
+	background-color: #e6e6e6;
+	font-family: sans-serif;
+}
+.container{
+	text-align: center;
+	margin: auto;
+	width: 40%;
+	height: 250px;
+	min-width:350px;
+	padding: 15px;
+}
+
+.opcao{
+	text-align: center;
+	vertical-align: middle;
+	width: 150px;
+	height: 40px;
+	outline-width: 2px;
+	outline-color:black;
+}
+
+#novo_medico{
+	position: absolute;
+	bottom: 15px;
+	left: 15px;
+	color: blue;
+	cursor: pointer; /*isso faz parecer que é um botão, mas nao é*/
+}

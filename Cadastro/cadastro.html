@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>replit</title>
+    <link href="cadastro.css" rel="stylesheet" />
+  </head>
+	
+	<body>
+		<h1>Registro de paciente</h1>
+		<div id="cadastro">
+			<a>Nome completo</a><br></br>
+			<input type="text" id="nome_paciente"><br></br>
+			<a>CPF</a><br></br>
+			<input type="number" id="cpf_paciente"><br></br>
+			<a>Registro geral(RG)</a><br></br>
+			<input type="number" id="rg_paciente"><br></br>
+			<a>Data de nascimento</a><br></br>
+			<input type="date" id="data_nascimento"><br></br>
+			<a>Sexo</a><br></br>
+			<input type="text" id="sexo_paciente"><br></br>
+			<a>Telefone</a><br></br>
+			<input type="text" id="telefone_paciente"><br></br>
+			<a>Convenio</a><br></br>
+			<select id="convenio">
+				<option>Não tem convênio</option>
+				<option>Unimed</option>
+				<option>AMO</option>
+				<option>UNIÃO</option>
+				<option>São Francisco</option>
+			</select>
+			<button id="cadastrar">Cadastrar</button>
+		</div>
+		<script src="cadastro.js"></script>
+	</body>
+</html>
