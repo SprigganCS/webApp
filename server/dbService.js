@@ -116,7 +116,29 @@ class DbService {
 
 
     }
+
+    async adicionaMedico (dados){
+        try{
+            const insertId = await new Promise((resolve, reject) => {
+                var auxiliar = dados;
+                var aux = JSON.parse(JSON.stringify(auxiliar));
+                let query = "INSERT INTO tbl_medico (nome_medico, especializacao_medico, crm_medico) VALUES (?, ?, ?);"
+                let data = [ [aux.nome], [aux.especializacao], [aux.crm] ];
+
+                connection.query(query, data, (err, result) =>{
+                    if(err) reject (new Error(err.message));
+                    resolve(result.insertId);
+                    console.log("Medico adicionado");
+                })
+            });
+            return dados;
+
+        }catch(error){
+            console.log(error);
+        }
+    }
     
+
 }
 
 module.exports = DbService;

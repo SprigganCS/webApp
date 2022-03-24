@@ -35,6 +35,16 @@ app.post('/agendar', (request, response) =>{ //aparentemente post é um método 
 	.catch(err => console.log(err));
 });
 
+app.post('/novoMedico', (request, response) =>{ 
+	const dados = request.body;
+	const db = dbService.getDbServiceInstance();
+	const result= db.adicionaMedico(dados);
+
+	result
+	.then(data => response.json({ data : data }))
+	.catch(err => console.log(err));
+});
+
 
 
 //read
