@@ -27,9 +27,38 @@
         </thead>
         <tbody></tbody>
       </table>
+      <section hidden id="painel_opcoes">
+        <select id="opcao_altera">
+          <option>Selecione</option>
+          <option>CPF</option>
+          <option>Nome</option>
+          <option>RG</option>
+          <option>Nascimento</option>
+          <option>Sexo</option>
+          <option>Telefone</option>
+          <option>Convênio</option>
+        </select>
+      </section>
       <section hidden id="update-row">
+
         <label>Nome:</label>
         <input type="text" id="update-name-input">
+
+        <label>RG:</label>
+        <input type="text" id="update-rg-input"> <br></br>
+
+        <label>Nascimento:</label>
+        <input type="date" id="update-nasc-input">
+
+        <label>Sexo: </label>
+        <input type="text" id="update-sexo-input"><br></br>
+
+        <label>Telefone: </label>
+        <input type="text" id="update-telefone-input">
+
+        <label>Convenio: </label>
+        <input type="text" id="update-convenio-input"><br></br>
+
         <button id="update-row-btn">Atualizar</button>
       </section>
     </main>

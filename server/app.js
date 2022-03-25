@@ -63,16 +63,50 @@ app.get('/getAll', (request, response) => {
 
 
 //UPDATE
-app.patch('/update', (request, response) => {
-	console.log(request.body);
-	const {id, name} = request.body;
+app.patch('/update/paciente', (request, response) => {
+	const {id, name, rg, nasc, sexo, telefone, convenio} = request.body;
 	const db = dbService.getDbServiceInstance();
-	
-	const result = db.updateNameById(id, name);
+	if(name.length != 0){
+		const result = db.updateNameById(id, name);
 
-	result
-	.then(data => response.json({success : data}))
-	.catch(err => console.log(err)); 
+		result
+		.then(data => response.json({success : data}))
+		.catch(err => console.log(err));
+	}
+
+	if(rg.length != 0){
+		const result = db.updateRgById(id, rg);
+
+		result
+		.then(data => response.json({success : data}))
+		.catch(err => console.log(err));
+	}
+
+	if(nasc.length != 0){
+		const result = db.updateNascById(id, nasc);
+		result
+		.then(data => response.json({success : data}))
+		.catch(err => console.log(err));
+	}
+	if(sexo.length != 0){
+		const result = db.updateSexoById(id, sexo);
+		result
+		.then(data => response.json({success : data}))
+		.catch(err => console.log(err));
+	}
+	if(telefone.length != 0){
+		const result = db.updateTelefoneById(id, telefone);
+		result
+		.then(data => response.json({success : data}))
+		.catch(err => console.log(err));
+	}
+	if(convenio.length != 0){
+		const result = db.updateConvenioById(id, convenio);
+		result
+		.then(data => response.json({success : data}))
+		.catch(err => console.log(err));
+	}
+	 
 })
 
 

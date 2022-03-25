@@ -1,0 +1,6 @@
+body{
+    text-align: center;
+}
+input[type=radio]{
+    margin: auto;
+}

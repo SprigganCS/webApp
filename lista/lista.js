@@ -29,6 +29,7 @@ function deletaPacientePorCPF(id)  {
 
 function handleEditRow(id){
     const updateSection = document.querySelector('#update-row');
+    const opcoesUpdate = document.querySelector("#painel_opcoes");
     updateSection.hidden = false;
 
     document.querySelector('#update-row-btn').dataset.id = id;
@@ -36,15 +37,25 @@ function handleEditRow(id){
 
 updateBtn.onclick = function (){
     const updateNameInput = document.querySelector('#update-name-input');
+    const updateRGInput = document.querySelector('#update-rg-input');
+    const updateNascInput = document.querySelector("#update-nasc-input");
+    const updateSexoInput = document.querySelector("#update-sexo-input");
+    const updateTelefoneInput = document.querySelector("#update-telefone-input")
+    const updateConvenioInput = document.querySelector("#update-convenio-input");
 
-    fetch('http://localhost:5000/update', {
+    fetch('http://localhost:5000/update/paciente', {
         method: 'PATCH',
         headers: {
             'Content-type' : 'application/json'
         },
         body: JSON.stringify({
             id: document.querySelector('#update-row-btn').dataset.id,
-            name: updateNameInput.value
+            name: updateNameInput.value,
+            rg: updateRGInput.value,
+            nasc: updateNascInput.value,
+            sexo: updateSexoInput.value,
+            telefone: updateTelefoneInput.value,
+            convenio: updateConvenioInput.value
         })
     })  
     .then(response => response.json())
@@ -54,6 +65,7 @@ updateBtn.onclick = function (){
         }
     })
 }
+
 
 
 

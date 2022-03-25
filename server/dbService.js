@@ -76,6 +76,7 @@ class DbService {
     } 
 
 
+
     async agendaConsulta(dados){
         try{
             const insertId = await new Promise((resolve, reject) => {
@@ -164,8 +165,6 @@ class DbService {
             id = parseInt(id, 10);
             const response = await new Promise((resolve, reject) => {
                 let query = "UPDATE tbl_paciente SET nome_paciente = ? WHERE cpf_paciente = ?"
-
-
                 connection.query(query, [name, id], (err, result) =>{
                     if(err) reject (new Error(err.message));
                     resolve(result.affectedRows);
@@ -173,6 +172,96 @@ class DbService {
             });
 
             return response === 1 ? true : false;
+        }catch(error){
+            console.log(error);
+            return false;
+        }
+    }
+
+    async updateRgById (id, rg){
+        try{
+            id = parseInt(id, 10); //transforma a chave primaria em inteiro (id é o CPF)
+            const response = await new Promise((resolve, reject) => {
+                let query = "UPDATE tbl_paciente SET rg_paciente = ? WHERE cpf_paciente = ?"
+                connection.query(query, [rg, id], (err, result) =>{
+                    if(err) reject (new Error(err.message));
+                    resolve(result.affectedRows);
+                })
+            });
+
+            return response === 1 ? true : false;
+        }catch(error){
+            console.log(error);
+            return false;
+        }
+    }
+
+    async updateNascById (id, nasc){
+        try{
+            id = parseInt(id, 10);
+            const response = await new Promise((resolve, reject) => {
+                let query = "UPDATE tbl_paciente SET nasc_paciente = ? WHERE cpf_paciente = ?"
+                connection.query(query, [nasc, id], (err, result) =>{
+                    if(err) reject (new Error(err.message));
+                    resolve(result.affectedRows);
+                })
+            });
+            return response === 1 ? true : false;
+
+        }catch(error){
+            console.log(error);
+            return false;
+        }
+    }
+
+    async updateSexoById (id, sexo){
+        try{
+            id = parseInt(id, 10);
+            const response = await new Promise((resolve, reject) => {
+                let query = "UPDATE tbl_paciente SET sexo_paciente = ? WHERE cpf_paciente = ?"
+                connection.query(query, [sexo, id], (err, result) =>{
+                    if(err) reject (new Error(err.message));
+                    resolve(result.affectedRows);
+                })
+            });
+            return response === 1 ? true : false;
+            
+        }catch(error){
+            console.log(error);
+            return false;
+        }
+    }
+
+    async updateTelefoneById (id, telefone){
+        try{
+            id = parseInt(id, 10);
+            const response = await new Promise((resolve, reject) => {
+                let query = "UPDATE tbl_paciente SET telefone_paciente = ? WHERE cpf_paciente = ?"
+                connection.query(query, [telefone, id], (err, result) =>{
+                    if(err) reject (new Error(err.message));
+                    resolve(result.affectedRows);
+                })
+            });
+            return response === 1 ? true : false;
+            
+        }catch(error){
+            console.log(error);
+            return false;
+        }
+    }
+
+    async updateConvenioById (id, convenio){
+        try{
+            id = parseInt(id, 10);
+            const response = await new Promise((resolve, reject) => {
+                let query = "UPDATE tbl_paciente SET id_convenio = (SELECT id_convenio FROM tbl_convenio WHERE nome_convenio = ?) WHERE cpf_paciente = ?";
+                connection.query(query, [convenio, id], (err, result) =>{
+                    if(err) reject (new Error(err.message));
+                    resolve(result.affectedRows);
+                })
+            });
+            return response === 1 ? true : false;
+            
         }catch(error){
             console.log(error);
             return false;
