@@ -41,6 +41,41 @@ class DbService {
             console.log(error);
         }
     }
+
+    async procuraNome(nome){
+        try{
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * FROM tbl_paciente WHERE nome_paciente= ?;";
+
+                connection.query(query, [nome], (err, results) =>{
+                    if(err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+            return response;
+
+        } catch(error){
+            console.log(error);
+        }
+    }
+
+    async procuraConsulta(cpf){
+        try{
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * FROM tbl_consulta WHERE cpf_paciente= ?;";
+
+                connection.query(query, [cpf], (err, results) =>{
+                    if(err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+            return response; //response aqui são todas as consultas registradas num dado cpf
+            
+
+        } catch(error){
+            console.log(error);
+        }
+    }
    
     async insertNewName(dados){ 
         try{

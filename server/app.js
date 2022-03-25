@@ -57,6 +57,27 @@ app.get('/getAll', (request, response) => {
 	.catch(err => console.log(err));
 })
 
+app.get('/procura/:nome', (request, response) => { //procura paciente pelo nome
+	const {nome} = request.params;
+	const db = dbService.getDbServiceInstance();
+
+	const result = db.procuraNome(nome);
+	result
+	.then(data => response.json({data : data}))
+	.catch(err => console.log(err));
+})
+
+app.get('/consulta/:cpf', (request, response) => { //procura consulta pelo cpf
+	const {cpf} = request.params;
+	const db = dbService.getDbServiceInstance();
+
+	const result = db.procuraConsulta(cpf);
+	result
+	.then(data => response.json({data : data}))
+	.catch(err => console.log(err));
+})
+
+
 
 
 

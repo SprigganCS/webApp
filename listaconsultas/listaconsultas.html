@@ -10,13 +10,21 @@
     <main>
         <h1>Localizar consulta por dado do paciente:</h1>
         <h3>Escolha o critério e insira o dado para consulta</h3>
-        <input type="radio" name="criterio_consulta" value="cpf_paciente"> CPF<br>
-        <input type="radio" name="criterio_consulta" value="rg_paciente"> RG<br>
+        <!-- <input type="radio" name="criterio_consulta" value="cpf_paciente"> CPF<br>
+        <input type="radio" name="criterio_consulta" value="rg_paciente"> RG<br> -->
         <input type="radio" name="criterio_consulta" value="nome_paciente"> Nome<br>
         <button id="selecionar-btn">Selecionar</button><br></br>
         <section hidden id="barra-pesquisa">
             <input type="text" id="entrada" placeholder="">
             <button id="consultar-btn">Consultar</button>
+            <table id="table">
+              <tbody></tbody>
+            </table>
+
+            <table id="table-consultas">
+              <tbody></tbody>
+            </table>
+
         </section>
     </main>
     <script src="listaconsultas.js"></script>
