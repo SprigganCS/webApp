@@ -8,7 +8,12 @@ document.querySelector('table tbody').addEventListener('click', function(event){
     if(event.target.className === "deleta-linha-btn"){
         deletaPacientePorCPF(event.target.dataset.id) //manda o id dos botões (que no caso é o identificador CPF)
     }
+    if(event.target.className === "edita-linha-btn"){
+        handleEditRow(event.target.dataset.id)
+    }
 });
+
+const updateBtn = document.querySelector('#update-row-btn');
 
 function deletaPacientePorCPF(id)  {
     fetch('http://localhost:5000/delete/' + id, {
@@ -20,6 +25,34 @@ function deletaPacientePorCPF(id)  {
             location.reload();
         }
     });
+}
+
+function handleEditRow(id){
+    const updateSection = document.querySelector('#update-row');
+    updateSection.hidden = false;
+
+    document.querySelector('#update-row-btn').dataset.id = id;
+}
+
+updateBtn.onclick = function (){
+    const updateNameInput = document.querySelector('#update-name-input');
+
+    fetch('http://localhost:5000/update', {
+        method: 'PATCH',
+        headers: {
+            'Content-type' : 'application/json'
+        },
+        body: JSON.stringify({
+            id: document.querySelector('#update-row-btn').dataset.id,
+            name: updateNameInput.value
+        })
+    })  
+    .then(response => response.json())
+    .then(data => {
+        if(data.success){
+            location.reload();
+        }
+    })
 }
 
 
@@ -37,8 +70,8 @@ function insertRowIntoTable(data){
         tableHtml += `<td>${sexo_paciente}</td>`;
         tableHtml += `<td>${telefone_paciente}</td>`;
         tableHtml += `<td>${id_convenio}</td>`;
-        tableHtml += `<td><button class="deleta-linha-btn" data-id=${cpf_paciente}>Editar</td>`;
-        tableHtml += `<td><button class="edita-linha-btn" data-id=${cpf_paciente}>Deletar</td>`;
+        tableHtml += `<td><button class="edita-linha-btn" data-id=${cpf_paciente}>Editar</td>`;
+        tableHtml += `<td><button class="deleta-linha-btn" data-id=${cpf_paciente}>Deletar</td>`;
     });
     tableHtml += "</tr>";
     if (isTableData){
