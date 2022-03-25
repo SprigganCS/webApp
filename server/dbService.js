@@ -41,7 +41,7 @@ class DbService {
             console.log(error);
         }
     }
-
+   
     async insertNewName(dados){ 
         try{
             const insertId = await new Promise((resolve, reject) => {
