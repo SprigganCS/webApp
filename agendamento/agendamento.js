@@ -27,7 +27,30 @@ document.getElementById('agendar').onclick = function() {
 	.then(response => response.json())
 	.then(data => insertRowIntoTable(data['data'])); 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 	//acharid(medico);
+
+
+
+
+
+
+
+
 
 
 	/*

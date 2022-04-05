@@ -20,14 +20,14 @@ connection.connect((err) => {
 })
 
 
-class DbService {
+class DbService { //no fim do documento essa classe é exportada com todas as funções acessíveis ao app.js
     static getDbServiceInstance(){
         return instance ? instance: new DbService();
     }
     async getAllData(){
         try{
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM tbl_paciente;";
+                const query = "SELECT * FROM tbl_paciente;"; //chamada SQL
 
                 connection.query(query, (err, results) =>{
                     if(err) reject(new Error(err.message));
@@ -45,7 +45,7 @@ class DbService {
     async procuraNome(nome){
         try{
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM tbl_paciente WHERE nome_paciente= ?;";
+                const query = "SELECT * FROM tbl_paciente WHERE nome_paciente= ?;"; //chamada SQL
 
                 connection.query(query, [nome], (err, results) =>{
                     if(err) reject(new Error(err.message));
@@ -62,7 +62,7 @@ class DbService {
     async procuraConsulta(cpf){
         try{
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM tbl_consulta WHERE cpf_paciente= ?;";
+                const query = "SELECT * FROM tbl_consulta WHERE cpf_paciente= ?;"; //chamada SQL
 
                 connection.query(query, [cpf], (err, results) =>{
                     if(err) reject(new Error(err.message));
@@ -80,7 +80,7 @@ class DbService {
     async insertNewName(dados){ 
         try{
             const insertId = await new Promise((resolve, reject) => {
-                const query = "INSERT INTO tbl_paciente (cpf_paciente, nome_paciente, rg_paciente, nasc_paciente, sexo_paciente, telefone_paciente, id_convenio) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                const query = "INSERT INTO tbl_paciente (cpf_paciente, nome_paciente, rg_paciente, nasc_paciente, sexo_paciente, telefone_paciente, id_convenio) VALUES (?, ?, ?, ?, ?, ?, ?)"; //chamada SQL
                 let auxiliar = dados;
                 let aux = JSON.parse(JSON.stringify(auxiliar)); //objeto completo
 
@@ -117,7 +117,7 @@ class DbService {
             const insertId = await new Promise((resolve, reject) => {
                 var auxiliar = dados;
                 var aux = JSON.parse(JSON.stringify(auxiliar));
-                var achaid = "SELECT id_medico FROM tbl_medico WHERE nome_medico=";
+                var achaid = "SELECT id_medico FROM tbl_medico WHERE nome_medico="; //chamada SQL
                 var nome_query = "'"+aux.medico+"';";
                 achaid = achaid+nome_query;
                 var id;
@@ -126,7 +126,7 @@ class DbService {
                     id=result;
                     id=JSON.stringify(id).replace(/\D/g, ''); //o retorno padrão da consulta é [ RowDataPacket { id_medico: 1 } ], o método replace limpa tudo deixando apenas o valor numerico do id
                     
-                    var achaCpf="SELECT cpf_paciente FROM tbl_paciente WHERE nome_paciente=";
+                    var achaCpf="SELECT cpf_paciente FROM tbl_paciente WHERE nome_paciente=";//chamada SQL
                     var nome_achaCpf="'"+aux.paciente+"';";
                     achaCpf= achaCpf+nome_achaCpf;
                     var cpf_achado;
@@ -134,7 +134,7 @@ class DbService {
                         if(err) reject(new Error(err.message));
                         cpf_achado=JSON.stringify(result).replace(/\D/g, '');
                         
-                        var insercao = "INSERT INTO tbl_consulta (id_medico, cpf_paciente, data_consulta) VALUES (?, ?, ?)"
+                        var insercao = "INSERT INTO tbl_consulta (id_medico, cpf_paciente, data_consulta) VALUES (?, ?, ?)"//chamada SQL
                         var dados_insercao=[ [id], [cpf_achado], [aux.data] ];
                         // console.log(dados_insercao); // ULTIMA VERIFICAÇÃO ANTES DE INSERIR
                         connection.query(insercao, dados_insercao, (err, result) =>{
@@ -158,7 +158,7 @@ class DbService {
             const insertId = await new Promise((resolve, reject) => {
                 var auxiliar = dados;
                 var aux = JSON.parse(JSON.stringify(auxiliar));
-                let query = "INSERT INTO tbl_medico (nome_medico, especializacao_medico, crm_medico) VALUES (?, ?, ?);"
+                let query = "INSERT INTO tbl_medico (nome_medico, especializacao_medico, crm_medico) VALUES (?, ?, ?);"//chamada SQL
                 let data = [ [aux.nome], [aux.especializacao], [aux.crm] ];
 
                 connection.query(query, data, (err, result) =>{
@@ -178,7 +178,7 @@ class DbService {
         try{
             id = parseInt(id, 10);
             const response = await new Promise((resolve, reject) => {
-                let query = "DELETE FROM tbl_paciente WHERE cpf_paciente= ?"
+                let query = "DELETE FROM tbl_paciente WHERE cpf_paciente= ?" //chamada SQL
 
 
                 connection.query(query, [id], (err, result) =>{
@@ -199,7 +199,7 @@ class DbService {
         try{
             id = parseInt(id, 10);
             const response = await new Promise((resolve, reject) => {
-                let query = "UPDATE tbl_paciente SET nome_paciente = ? WHERE cpf_paciente = ?"
+                let query = "UPDATE tbl_paciente SET nome_paciente = ? WHERE cpf_paciente = ?" //chamada SQL
                 connection.query(query, [name, id], (err, result) =>{
                     if(err) reject (new Error(err.message));
                     resolve(result.affectedRows);
@@ -217,7 +217,7 @@ class DbService {
         try{
             id = parseInt(id, 10); //transforma a chave primaria em inteiro (id é o CPF)
             const response = await new Promise((resolve, reject) => {
-                let query = "UPDATE tbl_paciente SET rg_paciente = ? WHERE cpf_paciente = ?"
+                let query = "UPDATE tbl_paciente SET rg_paciente = ? WHERE cpf_paciente = ?" //chamada SQL
                 connection.query(query, [rg, id], (err, result) =>{
                     if(err) reject (new Error(err.message));
                     resolve(result.affectedRows);
@@ -235,7 +235,7 @@ class DbService {
         try{
             id = parseInt(id, 10);
             const response = await new Promise((resolve, reject) => {
-                let query = "UPDATE tbl_paciente SET nasc_paciente = ? WHERE cpf_paciente = ?"
+                let query = "UPDATE tbl_paciente SET nasc_paciente = ? WHERE cpf_paciente = ?" //chamada SQL
                 connection.query(query, [nasc, id], (err, result) =>{
                     if(err) reject (new Error(err.message));
                     resolve(result.affectedRows);
@@ -253,7 +253,7 @@ class DbService {
         try{
             id = parseInt(id, 10);
             const response = await new Promise((resolve, reject) => {
-                let query = "UPDATE tbl_paciente SET sexo_paciente = ? WHERE cpf_paciente = ?"
+                let query = "UPDATE tbl_paciente SET sexo_paciente = ? WHERE cpf_paciente = ?" //chamada SQL
                 connection.query(query, [sexo, id], (err, result) =>{
                     if(err) reject (new Error(err.message));
                     resolve(result.affectedRows);
@@ -271,7 +271,7 @@ class DbService {
         try{
             id = parseInt(id, 10);
             const response = await new Promise((resolve, reject) => {
-                let query = "UPDATE tbl_paciente SET telefone_paciente = ? WHERE cpf_paciente = ?"
+                let query = "UPDATE tbl_paciente SET telefone_paciente = ? WHERE cpf_paciente = ?" //chamada SQL
                 connection.query(query, [telefone, id], (err, result) =>{
                     if(err) reject (new Error(err.message));
                     resolve(result.affectedRows);
@@ -289,7 +289,7 @@ class DbService {
         try{
             id = parseInt(id, 10);
             const response = await new Promise((resolve, reject) => {
-                let query = "UPDATE tbl_paciente SET id_convenio = (SELECT id_convenio FROM tbl_convenio WHERE nome_convenio = ?) WHERE cpf_paciente = ?";
+                let query = "UPDATE tbl_paciente SET id_convenio = (SELECT id_convenio FROM tbl_convenio WHERE nome_convenio = ?) WHERE cpf_paciente = ?"; //chamada SQL
                 connection.query(query, [convenio, id], (err, result) =>{
                     if(err) reject (new Error(err.message));
                     resolve(result.affectedRows);
