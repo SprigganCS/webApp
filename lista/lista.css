@@ -1,7 +1,11 @@
+body{
+    background-color: #d7f4fc;
+}
 main{
     width: 50%;
     margin: 50px auto;
     text-align: center;
+    font-family: 'Oswald', sans-serif;
 }
 
 table{
@@ -15,4 +19,7 @@ table, th, td{
 
 th, td {
     padding: 5px;
+}
+.butprocurar{
+    border-radius: 20px;
 }

@@ -1,12 +1,21 @@
+body{
+  background-color: #d7f4fc;
+}
 #cadastro{
 	text-align: center;
+  font-family: 'Oswald', sans-serif;
 }
 h1{
 	text-align: center;
+  font-family: 'Oswald', sans-serif;
+  font-size: 17px;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+.butcadastro{
+    border-radius: 20px;
 }

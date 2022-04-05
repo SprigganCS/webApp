@@ -1,29 +1,59 @@
 body{
-	background-color: #e6e6e6;
+	background-color: #d7f4fc;
 	font-family: sans-serif;
 }
 .container{
+	font-family: 'Oswald', sans-serif;
 	text-align: center;
+	font-size: 15px;
 	margin: auto;
 	width: 40%;
 	height: 250px;
 	min-width:350px;
-	padding: 15px;
+	padding: 22px;
 }
 
 .opcao{
-	text-align: center;
+	/* text-align: center;
 	vertical-align: middle;
 	width: 150px;
 	height: 40px;
 	outline-width: 2px;
-	outline-color:black;
+	outline-color:black; */
+  background-color: #ffffff; /* Branco */
+  color: rgb(0, 0, 0);
+  padding: 20px;
+  display:-ms-inline-grid;
+  font-size: 13px;
+  margin: auto;
+  cursor: pointer;
+  outline-width: 2px;
+  outline-color:black;
+  width: 161px;
+  height: auto;
 }
+.curvado {border-radius: 20px;}
 
 #novo_medico{
-	position: absolute;
-	bottom: 15px;
-	left: 15px;
+	
+	font-size: small;
 	color: blue;
 	cursor: pointer; /*isso faz parecer que é um botão, mas nao é*/
+	text-align:center;
+	text-decoration: underline;
+	padding-right: 86px;
+}
+.bordao{
+	background-color: #fff9c6;
+	border-style:double;
+	border-width: 4px;
+	border-color: #fff9c6;
+	text-align:start;
+	font-size:20px;
+	font-family: 'Oswald', sans-serif;
+	color: #78dae7;
+	font-stretch:extra-expanded;
+}	
+#bordatext{
+	padding-left: 80px;
 }
