@@ -1,6 +1,6 @@
 {
   "scripts":{
-    "start": "node server/server.js"
+    "start": "node server/app.js"
   },
   "dependencies": {
     "mysql": "^2.18.1",
