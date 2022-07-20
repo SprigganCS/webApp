@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>replit</title>
+    <link href="lista.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <main>
+      
+      <div>
+        <input placeholder="procurar pelo nome" id="search-input">
+        <button class="butprocurar" id="search-btn">Procurar</button>
+      </div>
+      <table id="table">
+        <thead>
+            <th>CPF</th>
+            <th>Nome</th>
+            <th>RG</th>
+            <th>Nascimento</th>
+            <th>Sexo</th>
+            <th>Telefone</th>
+            <th>Convênio</th>
+            <th>Editar</th>
+            <th>Deletar</th>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <section hidden id="painel_opcoes">
+        <select id="opcao_altera">
+          <option>Selecione</option>
+          <option>CPF</option>
+          <option>Nome</option>
+          <option>RG</option>
+          <option>Nascimento</option>
+          <option>Sexo</option>
+          <option>Telefone</option>
+          <option>Convênio</option>
+        </select>
+      </section>
+      <section hidden id="update-row">
+
+        <!-- <label>CPF:</label>
+        <input type="number" id="update-cpf-input"><br></br> -->
+
+        <label>Nome:</label>
+        <input type="text" id="update-name-input">
+
+        <label>RG:</label>
+        <input type="text" id="update-rg-input"> <br></br>
+
+        <label>Nascimento:</label>
+        <input type="date" id="update-nasc-input">
+
+        <label>Sexo: </label>
+        <input type="text" id="update-sexo-input"><br></br>
+
+        <label>Telefone: </label>
+        <input type="text" id="update-telefone-input">
+
+        <label>Convênio: </label>
+        <input type="text" id="update-convenio-input"><br></br>
+
+        
+
+        <button class="butprocurar" id="update-row-btn">Atualizar</button>
+      </section>
+    </main>
+    <script src="lista.js"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,16 @@
+body{
+    background-color: #d7f4fc;
+}
+#cadastroMedico{
+	text-align: center;
+}
+
+h1,h2{
+	text-align: center;
+}
+button{
+	padding: 10px;
+}
+.org{
+	font-family: 'Oswald', sans-serif;
+}

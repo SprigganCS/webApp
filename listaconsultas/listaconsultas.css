@@ -1,0 +1,14 @@
+body{
+    text-align: center;
+    background-color: #d7f4fc;  
+}
+main{
+    font-family: 'Oswald', sans-serif;
+    
+}
+input[type=radio]{
+    margin: auto;
+}
+.butconsult{
+    border-radius: 20px;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Consultas</title>
+    <link href="listaconsultas.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <main>
+        <h1>Localizar consulta por dado do paciente:</h1>
+        <h3>Escolha o critério e insira o dado para consulta</h3>
+        <!-- <input type="radio" name="criterio_consulta" value="cpf_paciente"> CPF<br>
+        <input type="radio" name="criterio_consulta" value="rg_paciente"> RG<br> -->
+        <input type="radio" name="criterio_consulta" value="nome_paciente"> Nome<br>
+        <button class="butconsult" id="selecionar-btn">Selecionar</button><br></br>
+        <section hidden id="barra-pesquisa">
+            <input type="text" id="entrada" placeholder="">
+            <button class="butconsult" id="consultar-btn">Consultar</button>
+            <table id="table">
+              <tbody></tbody>
+            </table>
+
+            <table id="table-consultas">
+              <tbody></tbody>
+            </table>
+
+        </section>
+    </main>
+    <script src="listaconsultas.js"></script>
+  </body>
+</html>
